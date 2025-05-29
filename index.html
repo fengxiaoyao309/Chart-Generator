@@ -1,0 +1,95 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图表生成器</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 添加回归分析库 -->
+    <script src="https://cdn.jsdelivr.net/npm/regression@2.0.1/dist/regression.min.js"></script>
+    <!-- 添加Chart.js插件以支持更多自定义功能 -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <!-- 添加 Chart.js annotation 插件 -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>图表生成器</h1>
+        
+        <div class="input-section">
+            <h2>输入数据</h2>
+            <div class="data-input">
+                <div class="axis-input">
+                    <label for="x-data">X轴数据 (用逗号分隔):</label>
+                    <textarea id="x-data" placeholder="例如: 1, 2, 3, 4, 5"></textarea>
+                </div>
+                <div class="axis-input">
+                    <label for="y-data">Y轴数据 (用逗号分隔):</label>
+                    <textarea id="y-data" placeholder="例如: 10, 15, 7, 20, 12"></textarea>
+                </div>
+            </div>
+            
+            <div class="chart-options">
+                <h3>图表类型</h3>
+                <select id="chart-type">
+                    <option value="scatter">散点图</option>
+                    <option value="line">折线图</option>
+                    <option value="bar">柱状图</option>
+                    <option value="radar">雷达图</option>
+                    <option value="scatter-fit">拟合直线散点图</option>
+                </select>
+                
+                <div class="chart-settings">
+                    <div class="setting">
+                        <label for="chart-title">图表标题:</label>
+                        <input type="text" id="chart-title" placeholder="输入图表标题">
+                    </div>
+                    <div class="setting">
+                        <label for="x-axis-label">X轴标签:</label>
+                        <input type="text" id="x-axis-label" placeholder="X轴">
+                    </div>
+                    <div class="setting">
+                        <label for="y-axis-label">Y轴标签:</label>
+                        <input type="text" id="y-axis-label" placeholder="Y轴">
+                    </div>
+                    <!-- 添加图表样式选项 -->
+                    <div class="setting">
+                        <label for="show-grid">显示网格:</label>
+                        <input type="checkbox" id="show-grid" checked>
+                    </div>
+                    <!-- 添加拟合线样式选项 -->
+                    <div class="setting">
+                        <label for="fit-line-style">拟合线样式:</label>
+                        <select id="fit-line-style">
+                            <option value="solid">实线</option>
+                            <option value="dashed">虚线</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="generate-btn">生成图表</button>
+        </div>
+        
+        <div id="fit-info" class="fit-info" style="display: none;">
+            <h3>拟合信息</h3>
+            <div id="equation" class="equation"></div>
+            <div id="r-squared" class="r-squared"></div>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="chart"></canvas>
+        </div>
+        
+        <!-- 添加下载按钮 -->
+        <div class="download-section">
+            <button id="download-btn" style="display: none;">下载图表</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
